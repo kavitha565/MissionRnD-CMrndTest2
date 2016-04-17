@@ -39,6 +39,49 @@ struct oddevennode{
 };
 
 int * oddeven_sll(struct oddevennode *head){
-
+	if (head==NULL)
 	return NULL;
+	int count1=0, count2 = 0;
+	int res[2];
+	struct oddevennode *current = head;
+	struct oddevennode *evenptr = NULL, *oddptr = NULL, *temp;
+	if (current->data % 2 == 0)
+	{
+		evenptr = current;
+		count1++;
+	}
+	else
+	{
+		oddptr = current;
+		count2++;
+	}
+	current = current->next;
+	while (current != NULL)
+	{
+		if (current->data % 2 == 0)
+		{
+			if (evenptr == NULL)
+			{
+				evenptr = current;
+		
+			}
+			else
+				evenptr->random = current;
+			count1++;
+		}
+		else
+		{
+			if (oddptr == NULL)
+			{
+				oddptr = current;
+				
+			}
+			else
+				oddptr->random = current;
+			count2++;
+		}
+	}
+	res[0] = count1;
+	res[1] = count2;
+	return res;
 }
